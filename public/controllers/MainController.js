@@ -1,4 +1,4 @@
-angular.module('app').controller('MainController', function($location, AuthService) {
+angular.module('app').controller('MainController', function($location, AuthService, DocumentService) {
     var vm = this;
     vm.isLoggedIn = false;
 
@@ -7,6 +7,22 @@ angular.module('app').controller('MainController', function($location, AuthServi
             vm.isLoggedIn = data.isLoggedIn;
         });
         vm.isLoggedIn = AuthService.isLoggedIn();
+
+        //TEST
+        var Document = DocumentService.Document();
+        var myDocument = new Document({data: 'some data'});
+        myDocument.$save(function() {
+            console.log('Saved!');
+        });
+        myDocument.$get({id: 1}).then(function(document) {
+            console.log('GET', document);
+        });
+        myDocument.$update({id: 1}).then(function(document) {
+            console.log('PUT', document);
+        });
+        myDocument.$delete({id: 1}).then(function(document) {
+            console.log('DELETE', document);
+        })
     }
 
     vm.toHome = function() {

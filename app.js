@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 /**
- * API
+ * API modules
  * */
 var authApi       = require('./server/controllers/auth');
 var userApi       = require('./server/controllers/user');
@@ -50,10 +50,10 @@ app.delete(apiUrl + '/meeting/:id', meetingApi.deleteMeeting);
 
 //Document
 app.get(apiUrl + '/document', documentApi.getDocuments);
-app.get(apiUrl + '/document/:id', meetingApi.getDocument);
-app.post(apiUrl + '/document', meetingApi.addDocument);
-app.put(apiUrl + '/document/:id', meetingApi.updateDocument);
-app.delete(apiUrl + '/document/:id', meetingApi.deleteDocument);
+app.get(apiUrl + '/document/:id', documentApi.getDocument);
+app.post(apiUrl + '/document', documentApi.addDocument);
+app.put(apiUrl + '/document/:id', documentApi.updateDocument);
+app.delete(apiUrl + '/document/:id', documentApi.deleteDocument);
 
 //Repository
 app.get(apiUrl + '/repository', repositoryApi.getRepositories);

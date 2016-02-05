@@ -1,7 +1,8 @@
 angular.module('app',
     [
         'ngRoute',
-        'ngCookies'
+        'ngCookies',
+        'ngResource'
     ])
     .config(function ($routeProvider) {
         $routeProvider
