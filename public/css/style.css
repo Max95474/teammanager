@@ -1,0 +1,17 @@
+.error {
+    color: red;
+}
+
+.form-signin {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.fakelink {
+    cursor: pointer;
+    cursor: hand;
+}
+
+.inner-container {
+    margin-top: 100px;
+}

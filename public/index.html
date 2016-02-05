@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Team manager</title>
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body ng-controller="MainController as main">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <!-- Header -->
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand fakelink" ng-click="main.toMain()">Team manager</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a class="fakelink"
+                       ng-click="main.toHome()">Home</a></li>
+                <li><a class="fakelink"
+                       ng-click="main.toLogin()"
+                       ng-show="!main.isLoggedIn">Log in</a></li>
+                <li><a class="fakelink"
+                       ng-click="main.logOut()"
+                       ng-show="main.isLoggedIn">Log out</a></li>
+                <li><a class="fakelink">About</a></li>
+                <li><a class="fakelink">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Header -->
+</nav>
+
+<div ng-view></div>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/angular-cookies/angular-cookies.min.js"></script>
+
+<script src="app.js"></script>
+<script src="services/AuthService.js"></script>
+<script src="controllers/MainController.js"></script>
+<script src="controllers/LoginController.js"></script>
+<script src="controllers/HomeController.js"></script>
+</body>
+</html>
