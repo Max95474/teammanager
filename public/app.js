@@ -12,8 +12,9 @@ angular.module('app',
                 controllerAs: 'home'
             })
             .when('/login', {
-                templateUrl: 'pages/login.html',
-                controller: 'LoginController',
-                controllerAs: 'login'
+                templateUrl: 'pages/login.html'
+            })
+            .when('/documents', {
+                templateUrl: 'pages/documents.html'
             })
     });

@@ -30,6 +30,9 @@
                 <li><a class="fakelink"
                        ng-click="main.logOut()"
                        ng-show="main.isLoggedIn">Log out</a></li>
+                <li><a class="fakelink"
+                       ng-click="main.toDocuments()"
+                       ng-show="main.isLoggedIn">Documents</a></li>
                 <li><a class="fakelink">About</a></li>
                 <li><a class="fakelink">Contact</a></li>
             </ul>
@@ -40,6 +43,7 @@
 
 <div ng-view></div>
 
+<!-- Angular modules -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="../bower_components/angular/angular.js"></script>
@@ -53,5 +57,6 @@
 <script src="controllers/MainController.js"></script>
 <script src="controllers/LoginController.js"></script>
 <script src="controllers/HomeController.js"></script>
+<script src="controllers/DocumentsController.js"></script>
 </body>
 </html>

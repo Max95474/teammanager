@@ -3,9 +3,12 @@
 var Document = require('../model/document');
 
 function addDocument(req, res) {
-  console.log('POST Document');
-  console.log(req.body);
-  res.json({status: 'OK'});
+  var document = new Document(req.body);
+  document.save(req.body, function(err, document) {
+    if(err) res.status(500).json();
+    res.json(document);
+    console.log('Saved: ', document);
+  });
 }
 
 function updateDocument(req, res) {
