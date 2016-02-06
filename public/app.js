@@ -17,4 +17,7 @@ angular.module('app',
             .when('/documents', {
                 templateUrl: 'pages/documents.html'
             })
+            .when('/document', {
+                templateUrl: 'pages/document.html'
+            })
     });

@@ -19,7 +19,7 @@ angular.module('app').controller('DocumentsController', function($scope, $locati
   }
 
   $scope.openDocument = function($index) {
-
+    $location.path('/document');
   };
 
   activate();
