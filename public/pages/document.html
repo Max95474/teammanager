@@ -1,10 +1,17 @@
-<div ng-controller="DocumentController">
+<div ng-controller="DocumentController" class="view-container">
     <div class="form-group">
         <label for="usr">Name:</label>
-        <input type="text" class="form-control" id="usr">
+        <input type="text" class="form-control" id="usr" ng-model="document.name">
     </div>
     <div class="form-group">
         <label for="comment">Content:</label>
-        <textarea class="form-control" rows="20" id="comment"></textarea>
+        <textarea class="form-control" rows="15" id="comment" ng-model="document.content"></textarea>
+    </div>
+    <div class="form-group">
+        <button ng-show="!isNewDocument" ng-click="toDocuments()">Back</button>
+        <div ng-show="isNewDocument">
+            <button ng-click="toDocuments()">Back</button>
+            <button ng-click="saveDocument()">Save</button>
+        </div>
     </div>
 </div>

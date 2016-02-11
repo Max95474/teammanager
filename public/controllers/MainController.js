@@ -7,17 +7,6 @@ angular.module('app').controller('MainController', function($location, AuthServi
             vm.isLoggedIn = data.isLoggedIn;
         });
         vm.isLoggedIn = AuthService.isLoggedIn();
-
-        //TEST
-        var Document = DocumentService.Document();
-        var myDocument = new Document({
-            name: 'New document',
-            content: 'Document content'
-        });
-
-        myDocument.$save(function(document) {
-            console.log('Saved!', document);
-        });
     }
 
     vm.toHome = function() {

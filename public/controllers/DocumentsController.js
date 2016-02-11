@@ -1,25 +1,26 @@
-angular.module('app').controller('DocumentsController', function($scope, $location) {
-  $scope.documents = [
-    {
-      name: 'First document',
-      content: 'First document content'
-    },
-    {
-      name: 'Second document',
-      content: 'Second document content'
-    },
-    {
-      name: 'Third document',
-      content: 'Third document content'
-    }
-  ];
+angular.module('app').controller('DocumentsController', function($scope, $location, DocumentService) {
 
   function activate() {
-
+    var Document = DocumentService.Document();
+    Document.query(function(data) {
+      $scope.documents = data;
+    });
   }
 
-  $scope.openDocument = function($index) {
+  $scope.createDocument = function() {
     $location.path('/document');
+    DocumentService.currentDocument(null);
+  };
+
+  $scope.openDocument = function($index) {
+    DocumentService.currentDocument($scope.documents[$index]);
+    $location.path('/document');
+  };
+
+  $scope.deleteDocument = function(document, $index) {
+    document.$delete({id: document._id}, function() {
+      $scope.documents.splice($index, 1);
+    });
   };
 
   activate();

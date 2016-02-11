@@ -4,9 +4,9 @@ var Document = require('../model/document');
 
 function addDocument(req, res) {
   var document = new Document(req.body);
-  document.save(req.body, function(err, document) {
+  document.save(function(err, document) {
     if(err) res.status(500).json();
-    res.json(document);
+    else res.json(document);
     console.log('Saved: ', document);
   });
 }
@@ -23,12 +23,26 @@ function getDocument(req, res) {
 
 function getDocuments(req, res) {
   console.log('GET Documents');
-  res.json({documents: ['doc1`', 'doc2', 'doc3']});
+  Document.find({}, function(err, documents) {
+    if(err) {
+      res.status(500);
+    } else {
+      res.send(documents);
+    }
+  })
 }
 
 function deleteDocument(req, res) {
   console.log('DELETE Document', req.params.id);
-  res.json({status: 'OK'});
+  Document.findOne({_id: req.params.id}, function(err, document) {
+    if(err) res.status(500);
+    if(document) {
+      document.remove(function(err, document) {
+        if(err) res.status(500);
+        else res.json({status: 'OK'});
+      })
+    }
+  })
 }
 
 module.exports = {
