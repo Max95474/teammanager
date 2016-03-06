@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema({
     username: {type: String, required: 'Username is required!', index: {unique: true}},
     password: String,
-    type: String,
+    accessLevel: Number,
     team: {type: mongoose.Schema.Types.ObjectId, ref: 'Team'}
 });
 

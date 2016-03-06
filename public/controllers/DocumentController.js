@@ -10,9 +10,16 @@ angular.module('app').controller('DocumentController', function($scope, $locatio
   $scope.saveDocument = function() {
     var Document = DocumentService.Document();
     var document = new Document($scope.document);
-    document.$save(function() {
-      $location.path('/documents');
-    });
+    if($scope.isNewDocument) {
+      document.$save(function() {
+        $location.path('/documents');
+      });
+    } else {
+      document.$update({id: document._id}, function() {
+        $location.path('/documents');
+      })
+    }
+
   };
 
   $scope.toDocuments = function() {

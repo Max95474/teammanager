@@ -69,6 +69,20 @@ app.post(apiUrl + '/team', teamApi.addTeam);
 app.put(apiUrl + '/team/:id', teamApi.updateTeam);
 app.delete(apiUrl + '/team/:id', teamApi.deleteTeam);
 
+//registering user
+app.get('/register', function(req, res) {
+    var User = require('./server/model/user');
+    var newUser = new User({
+        username: req.query.username,
+        password: req.query.password,
+        accessLevel: req.query.accessLevel
+    });
+    newUser.save(function(err, user) {
+        if(err) res.status(500);
+        else res.json(user);
+    })
+});
+
 app.get('/', function(req, res) {
    res.sendFile(__dirname + '/public/pages/index.html');
 });

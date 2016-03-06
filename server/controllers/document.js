@@ -12,8 +12,20 @@ function addDocument(req, res) {
 }
 
 function updateDocument(req, res) {
-  console.log('PUT Document');
-  res.json({status: 'OK'});
+  Document.findById({_id: req.body._id}, function(err, document) {
+    if(err) {
+      res.status(404).json();
+    } else {
+      for(var field in req.body) {
+        if(req.body.hasOwnProperty(field))
+          document[field] = req.body[field];
+      }
+      document.save(function(err, document) {
+        if(err) res.status(500).json();
+        else res.send(document);
+      })
+    }
+  })
 }
 
 function getDocument(req, res) {
