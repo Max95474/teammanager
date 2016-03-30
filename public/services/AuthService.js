@@ -10,6 +10,10 @@ angular.module('app').factory('AuthService', function ($http, $q, $cookies) {
             loggedIn = true;
             notifyUserChangedEventListeners(user);
         }
+
+        window.onbeforeunload = function() {
+            if(!userData.rememberMe) $cookies.remove('user');
+        }
     }
 
     acitvate();
@@ -46,8 +50,8 @@ angular.module('app').factory('AuthService', function ($http, $q, $cookies) {
                 .then(function(data) {
                     user = data.data;
                     loggedIn = true;
-                    if(userData.rememberMe)
-                        $cookies.putObject('user', user);
+                    //if(userData.rememberMe)
+                    $cookies.putObject('user', user);
                     notifyUserChangedEventListeners(user);
                     resolve(user);
                 },function(err) {

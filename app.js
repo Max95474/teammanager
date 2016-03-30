@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 
 /**
  * API modules
@@ -30,6 +31,7 @@ app.use( bodyParser.urlencoded({extended: true}));
 app.use( bodyParser.text() );
 app.use( bodyParser.raw() );
 app.use( bodyParser.json() );
+app.use(cookieParser());
 
 //Auth
 app.post(apiUrl + '/login', authApi.logIn);

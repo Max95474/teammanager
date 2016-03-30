@@ -1,4 +1,5 @@
-angular.module('app').controller('DocumentController', function($scope, $location, DocumentService) {
+angular.module('app').controller('DocumentController',
+  function($scope, $location, DocumentService, ErrorService) {
   $scope.isNewDocument = false;
 
   function activate() {
@@ -11,9 +12,11 @@ angular.module('app').controller('DocumentController', function($scope, $locatio
     var Document = DocumentService.Document();
     var document = new Document($scope.document);
     if($scope.isNewDocument) {
-      document.$save(function() {
+      document.$save().then(function() {
         $location.path('/documents');
-      });
+      }).catch(function(err) {
+        ErrorService.showErrorModal(err.data);
+      })
     } else {
       document.$update({id: document._id}, function() {
         $location.path('/documents');

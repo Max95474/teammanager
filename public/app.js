@@ -2,7 +2,9 @@ angular.module('app',
     [
         'ngRoute',
         'ngCookies',
-        'ngResource'
+        'ngResource',
+        'ui.bootstrap',
+        'ui.bootstrap.modal'
     ])
     .config(function ($routeProvider) {
         $routeProvider

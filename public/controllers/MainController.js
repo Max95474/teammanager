@@ -3,10 +3,14 @@ angular.module('app').controller('MainController', function($location, AuthServi
     vm.isLoggedIn = false;
 
     function activate() {
+        vm.isLoggedIn = AuthService.isLoggedIn();
         AuthService.registerOnUserChangedEvent(function(data) {
             vm.isLoggedIn = data.isLoggedIn;
         });
-        vm.isLoggedIn = AuthService.isLoggedIn();
+
+        if(!vm.isLoggedIn) {
+            $location.path('/login');
+        }
     }
 
     vm.toHome = function() {
@@ -23,7 +27,7 @@ angular.module('app').controller('MainController', function($location, AuthServi
 
     vm.logOut = function() {
         AuthService.logOut().then(function(data) {
-            console.log(data);
+            $location.path('/');
         })
     };
 
